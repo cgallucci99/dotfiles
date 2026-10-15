@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-{{ .brewPrefix }}/bin/uv tool install wakepy
-{{ .brewPrefix }}/bin/uv tool install rivalcfg
-# --force takes over ~/.local/bin/ipython links left behind by an old pipx install
-{{ .brewPrefix }}/bin/uv tool install --force ipython
+# --managed-python uses uv's own Python, so removing a Homebrew Python can't break these tools.
+# --force replaces broken installs and links left behind by an old pipx install.
+for tool in ipython rivalcfg wakepy; do
+  {{ .brewPrefix }}/bin/uv tool install --force --managed-python "$tool"
+done
