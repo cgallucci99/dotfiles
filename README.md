@@ -40,7 +40,7 @@ To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `che
 | VS Code settings | `~/Library/Application Support/Code` | `~/.config/Code` and the Flatpak path |
 | macOS defaults | Yes | No |
 
-Both get Oh My Zsh, zsh-autosuggestions, mise (Node and Ruby), uv/pipx tools, VS Code extensions, Claude config, and SSH setup.
+Both get Oh My Zsh, zsh-autosuggestions, mise (Node and Ruby), uv/pipx tools, VS Code extensions, Claude config, `~/.ssh/config`, and SSH setup.
 
 ## SSH key
 
@@ -60,7 +60,17 @@ Both get Oh My Zsh, zsh-autosuggestions, mise (Node and Ruby), uv/pipx tools, VS
 
 - Apps installed by MDM on the work Mac: Chrome, Slack, Zoom, Claude, DisplayLink
 - Secrets in `~/.env` and `~/.config/gh/hosts.yml`
-- `~/.ssh/config`
+
+## Checks
+
+Every push runs `.setup/check.sh` on macOS and Ubuntu, in work and personal mode. It renders the repo into a temp folder, then syntax-checks the zsh files and scripts and runs shellcheck.
+
+Run it locally before pushing (never touches `~`):
+
+```sh
+.setup/check.sh true   # work mode
+.setup/check.sh false  # personal mode
+```
 
 ## Day to day
 

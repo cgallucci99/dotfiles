@@ -1,0 +1,28 @@
+name: Check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+        work: [true, false]
+    name: ${{ matrix.os }} (work=${{ matrix.work }})
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install chezmoi and zsh
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME/.local/bin"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          if [ "$RUNNER_OS" = "Linux" ]; then
+            sudo apt-get update -q && sudo apt-get install -y -q zsh
+          fi
+
+      - name: Render and check
+        run: .setup/check.sh ${{ matrix.work }}

@@ -6,6 +6,7 @@ ssh_key_label() {
     system="macOS $(sw_vers -productVersion)"
   else
     device="$(cat /sys/devices/virtual/dmi/id/product_name 2> /dev/null || echo Linux)"
+    # shellcheck source=/dev/null
     system="$(. /etc/os-release && echo "$PRETTY_NAME")"
   fi
 
