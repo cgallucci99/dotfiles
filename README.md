@@ -32,7 +32,13 @@ To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `che
 | VS Code settings | `~/Library/Application Support/Code` | `~/.config/Code` and the Flatpak path |
 | macOS defaults | Yes | No |
 
-Both get Oh My Zsh, zsh-autosuggestions, nvm, mise, uv/pipx tools, VS Code extensions, Claude config, and an SSH key if none exists.
+Both get Oh My Zsh, zsh-autosuggestions, nvm, mise, uv/pipx tools, VS Code extensions, Claude config, and SSH setup.
+
+## SSH key
+
+- Creates `~/.ssh/id_ed25519` only if it doesn't exist
+- Labels it with user, host, model, OS, and date, e.g. `camden.gallucci@C73CQ6QP54 · MacBook Pro · macOS 26.6.2 arm64 · 2026-10-15`
+- Logs in with `gh` (browser) and uploads the key to GitHub if it isn't there yet
 
 ## Bazzite notes
 

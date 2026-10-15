@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+
+{{ include ".setup/ssh.sh" }}
+
+eval "$({{ .brewPrefix }}/bin/brew shellenv bash)"
+
+if [ ! -f "$HOME/.ssh/id_ed25519.pub" ]; then
+  echo "No ~/.ssh/id_ed25519.pub, skipping GitHub upload"
+  exit 0
+fi
+
+if ! gh auth status --hostname github.com > /dev/null 2>&1; then
+  gh auth login --hostname github.com --git-protocol https --web --skip-ssh-key --scopes admin:public_key
+elif ! gh auth status --hostname github.com 2>&1 | grep -q "admin:public_key"; then
+  gh auth refresh --hostname github.com --scopes admin:public_key
+fi
+
+key="$(cut -d " " -f 1,2 "$HOME/.ssh/id_ed25519.pub")"
+
+if gh api user/keys --jq ".[].key" | grep -qxF "$key"; then
+  echo "SSH key is already on GitHub, skipping"
+else
+  # Linux date has no -r for files, so read the mtime with stat instead
+  if [ "$(uname -s)" = "Darwin" ]; then
+    created="$(date -r "$HOME/.ssh/id_ed25519" +%Y-%m-%d)"
+  else
+    created="$(date -d "@$(stat -c %Y "$HOME/.ssh/id_ed25519")" +%Y-%m-%d)"
+  fi
+  gh ssh-key add "$HOME/.ssh/id_ed25519.pub" --title "$(ssh_key_label "$created")"
+fi
