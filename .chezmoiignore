@@ -6,3 +6,6 @@ Library
 .config/Code
 .var
 {{ end }}
+
+# Oh My Zsh writes these at runtime; without this, every apply deletes them
+.oh-my-zsh/cache/**
