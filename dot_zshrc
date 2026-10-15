@@ -1,0 +1,23 @@
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_CUSTOM="$HOME/.zsh-custom"
+ZSH_THEME="jonathan-custom"
+plugins=(
+    git
+    zsh-autosuggestions
+)
+
+# chezmoi manages ~/.oh-my-zsh, so updates come from `chezmoi -R apply`
+DISABLE_AUTO_UPDATE="true"
+
+source $ZSH/oh-my-zsh.sh
+
+source "$HOME/.aliases"
+
+export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+eval "$(mise activate zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"

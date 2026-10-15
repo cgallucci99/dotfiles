@@ -1,0 +1,30 @@
+{
+  "files.autoSave": "afterDelay",
+  "workbench.colorTheme": "Monokai",
+  "editor.minimap.enabled": false,
+  "claudeCode.preferredLocation": "panel",
+  "vim.insertModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "f",
+        "f"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.startupEditor": "none",
+  "makefile.configureOnOpen": true,
+  "editor.mouseWheelZoom": true,
+  "terminal.integrated.mouseWheelZoom": true,
+  "terminal.integrated.fontSize": 13,
+  "emmet.includeLanguages": {
+    "erb": "html"
+  },
+  "python.analysis.typeCheckingMode": "basic",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "claudeCode.hideOnboarding": true,
+  "explorer.confirmDragAndDrop": false
+}

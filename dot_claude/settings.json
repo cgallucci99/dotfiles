@@ -1,0 +1,31 @@
+{
+  "enabledPlugins": {
+    "ruby-lsp@claude-plugins-official": true,
+    "agent-skills@addy-agent-skills": true,
+    "code-simplifier@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true,
+    "i-have-adhd@i-have-adhd": true,
+    "humanizer@humanizer": true
+  },
+  "extraKnownMarketplaces": {
+    "addy-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "addyosmani/agent-skills"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
+    }
+  },
+  "theme": "dark"
+}

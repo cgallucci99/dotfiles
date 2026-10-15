@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+for zone in z0 z1 z2 z3 z4 z5 z6 z7 z8 z9; do
+  rivalcfg --$zone purple
+done
+rivalcfg -a blue
+rivalcfg --buttons "buttons(layout=QWERTY; button1=button1; button2=button2; button3=LeftSuper; button4=V; button5=C; button6=Home; button7=End; button8=F3; button9=dpi; scrollup=scrollup; scrolldown=scrolldown)"

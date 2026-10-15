@@ -1,0 +1,11 @@
+# Braven
+alias 'staging!'='heroku run --app braven-platform-staging rails c'
+alias prod_console='heroku whoami || (echo | heroku login) && heroku console --app=braven-platform-highlander'
+alias worknotes='cd ~/Documents/Braven/Work\ Notes'
+alias odyssey='cd ~/Documents/Braven/odyssey'
+
+# Git
+alias git-today="git --no-pager log --all --since=midnight --author='$(git config user.name)' --oneline"
+
+# Mouse
+alias mousesetup="$HOME/.local/bin/mousesetup"

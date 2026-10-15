@@ -1,0 +1,9 @@
+[user]
+	name = Camden Gallucci
+	email = camden.gallucci@bebraven.org
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
+[push]
+	autoSetupRemote = true
+[core]
+	editor = code --wait

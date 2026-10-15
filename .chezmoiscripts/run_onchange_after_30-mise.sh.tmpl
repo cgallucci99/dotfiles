@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+
+# mise config hash: {{ include "private_dot_config/mise/config.toml" | sha256sum }}
+/opt/homebrew/bin/mise install
