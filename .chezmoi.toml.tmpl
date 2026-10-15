@@ -1,0 +1,11 @@
+{{- $work := promptBoolOnce . "work" "Is this a work machine" (eq .chezmoi.os "darwin") -}}
+{{- $brewPrefix := "/home/linuxbrew/.linuxbrew" -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $brewPrefix = "/opt/homebrew" -}}
+{{-   if eq .chezmoi.arch "amd64" }}{{ $brewPrefix = "/usr/local" }}{{ end -}}
+{{- end -}}
+
+[data]
+    work = {{ $work }}
+    email = {{ if $work }}"camden.gallucci@bebraven.org"{{ else }}"cgallucci99@gmail.com"{{ end }}
+    brewPrefix = {{ $brewPrefix | quote }}

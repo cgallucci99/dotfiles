@@ -13,4 +13,8 @@ if [ "$(uname -s)" = "Darwin" ]; then
   echo
 fi
 
-sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply cgallucci99
+if command -v curl > /dev/null 2>&1; then
+  sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply cgallucci99
+else
+  sh -c "$(wget -qO- get.chezmoi.io)" -- init --apply cgallucci99
+fi

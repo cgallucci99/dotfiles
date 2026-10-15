@@ -13,11 +13,15 @@ source $ZSH/oh-my-zsh.sh
 
 source "$HOME/.aliases"
 
+{{ if eq .chezmoi.os "darwin" -}}
 export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+{{ end -}}
 eval "$(mise activate zsh)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+{{- if .work }}
 
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="{{ .brewPrefix }}/opt/libpq/bin:$PATH"
+{{- end }}

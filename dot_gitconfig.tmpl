@@ -1,8 +1,10 @@
 [user]
 	name = Camden Gallucci
-	email = camden.gallucci@bebraven.org
+	email = {{ .email }}
+{{- if .work }}
 [credential "https://git.heroku.com"]
 	helper = !heroku git:credentials
+{{- end }}
 [push]
 	autoSetupRemote = true
 [core]

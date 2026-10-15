@@ -1,7 +1,16 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 
-CODE="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code"
+code_cli() {
+{{- if eq .chezmoi.os "darwin" }}
+  "/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" "$@"
+{{- else }}
+  if command -v code > /dev/null 2>&1; then
+    code "$@"
+  else
+    flatpak run com.visualstudio.code "$@"
+  fi
+{{- end }}
+}
 
 extensions=(
   anthropic.claude-code
@@ -32,6 +41,5 @@ extensions=(
 )
 
 for extension in "${extensions[@]}"; do
-  "$CODE" --install-extension "$extension" --force
+  code_cli --install-extension "$extension" --force
 done
-{{ end -}}

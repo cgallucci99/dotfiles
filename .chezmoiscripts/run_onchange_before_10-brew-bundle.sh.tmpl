@@ -1,34 +1,41 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 set -e
 
-eval "$(/opt/homebrew/bin/brew shellenv bash)"
+eval "$({{ .brewPrefix }}/bin/brew shellenv bash)"
 
-# Chrome, Slack, Zoom, Claude, and DisplayLink are installed by MDM (Iru Self Service)
 brew bundle --file=/dev/stdin <<BREWFILE
-tap "anthropics/tap"
-tap "heroku/brew"
-
-brew "astro"
-brew "dbus"
 brew "gh"
-brew "heroku/brew/heroku"
-brew "libpq"
 brew "mise"
 brew "openssl@3"
 brew "pipx"
 brew "tfenv"
 brew "uv"
+{{- if eq .chezmoi.os "linux" }}
+brew "zsh"
+{{- end }}
+{{- if .work }}
 
+tap "heroku/brew"
+brew "astro"
+brew "heroku/brew/heroku"
+brew "libpq"
+{{- end }}
+{{- if eq .chezmoi.os "darwin" }}
+
+# Chrome, Slack, Zoom, Claude, and DisplayLink are installed by MDM (Iru Self Service)
+tap "anthropics/tap"
+brew "dbus"
 cask "anthropics/tap/ant"
 cask "bruno"
 cask "claude-code"
 cask "docker-desktop"
-cask "gcloud-cli"
 cask "ghostty"
-cask "ngrok"
 cask "obsidian"
 cask "scroll-reverser"
 cask "visual-studio-code"
+{{- if .work }}
+cask "gcloud-cli"
+cask "ngrok"
+{{- end }}
+{{- end }}
 BREWFILE
-{{ end -}}

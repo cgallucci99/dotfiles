@@ -1,28 +1,52 @@
 # dotfiles
 
-Managed with [chezmoi](https://www.chezmoi.io). macOS only.
+Managed with [chezmoi](https://www.chezmoi.io). Supports macOS and Linux (Bazzite).
 
-## Install on a new Mac
+## Install
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgallucci99/dotfiles/main/.setup/install.sh)"
 ```
 
-This installs Xcode CLI tools, then runs `chezmoi init --apply cgallucci99`.
+This installs Xcode CLI tools on macOS, then runs `chezmoi init --apply cgallucci99`.
+
+On first run, chezmoi asks **"Is this a work machine"** (default: yes on macOS, no on Linux).
+
+## Work mode
+
+Work machines get:
+
+- Git email `camden.gallucci@bebraven.org` (personal gets `cgallucci99@gmail.com`)
+- Braven aliases and the Heroku git credential helper
+- `astro`, `heroku`, `libpq`, plus `gcloud-cli` and `ngrok` on macOS
+
+To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `chezmoi apply`.
 
 ## What it sets up
 
-- Homebrew packages and casks (`.chezmoiscripts/run_onchange_before_10-brew-bundle.sh.tmpl`)
-- Oh My Zsh and zsh-autosuggestions (`.chezmoiexternal.toml`), with custom theme in `~/.zsh-custom`
-- nvm + latest Node, mise tools, uv/pipx tools
-- VS Code extensions
-- macOS defaults (dark mode, key repeat, Dock, Finder, Scroll Reverser)
-- An SSH key, if none exists
+| | macOS | Linux |
+| --- | --- | --- |
+| CLI tools | Homebrew | Homebrew (preinstalled on Bazzite) |
+| GUI apps | Homebrew casks | Flatpak (Chrome, Bruno, Obsidian, VS Code) |
+| Claude Code | `claude-code` cask | Native installer |
+| VS Code settings | `~/Library/Application Support/Code` | `~/.config/Code` and the Flatpak path |
+| macOS defaults | Yes | No |
+
+Both get Oh My Zsh, zsh-autosuggestions, nvm, mise, uv/pipx tools, VS Code extensions, Claude config, and an SSH key if none exists.
+
+## Bazzite notes
+
+- zsh comes from Homebrew. Bazzite recommends setting it in the terminal profile instead of `chsh`:
+  - Terminal settings > profile > "Use Custom Command" > `/home/linuxbrew/.linuxbrew/bin/zsh -l`
+- `-l` matters: `~/.zprofile` puts Homebrew on the PATH.
+- `mousesetup` needs udev rules first: `sudo rivalcfg --update-udev`
+- Not installed on Linux: Ghostty (no Flatpak), Docker Desktop (Bazzite ships Podman), Scroll Reverser
 
 ## Not managed
 
-- Apps installed by MDM: Chrome, Slack, Zoom, Claude, DisplayLink
+- Apps installed by MDM on the work Mac: Chrome, Slack, Zoom, Claude, DisplayLink
 - Secrets in `~/.env` and `~/.config/gh/hosts.yml`
+- `~/.ssh/config`
 
 ## Day to day
 

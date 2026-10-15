@@ -1,8 +1,7 @@
-{{ if eq .chezmoi.os "darwin" -}}
 #!/bin/bash
 set -e
 
-if ! command -v brew > /dev/null 2>&1 && [ ! -x /opt/homebrew/bin/brew ]; then
+# Bazzite ships with Homebrew, so this only runs on a fresh macOS or other Linux
+if [ ! -x "{{ .brewPrefix }}/bin/brew" ]; then
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-{{ end -}}
