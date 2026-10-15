@@ -3,4 +3,5 @@ set -e
 
 {{ .brewPrefix }}/bin/uv tool install wakepy
 {{ .brewPrefix }}/bin/uv tool install rivalcfg
-{{ .brewPrefix }}/bin/pipx install ipython
+# --force takes over ~/.local/bin/ipython links left behind by an old pipx install
+{{ .brewPrefix }}/bin/uv tool install --force ipython

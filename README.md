@@ -41,7 +41,7 @@ To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `che
 | VS Code settings | `~/Library/Application Support/Code` | `~/.config/Code` and the Flatpak path |
 | macOS defaults | Yes | No |
 
-Both get Oh My Zsh, zsh-autosuggestions, mise (Node and Ruby), uv/pipx tools, VS Code extensions, Claude config, `~/.ssh/config`, and SSH setup.
+Both get Oh My Zsh, zsh-autosuggestions, mise (Node and Ruby), uv tools (ipython, wakepy, rivalcfg), VS Code extensions, Claude config, `~/.ssh/config`, and SSH setup.
 
 ## Obsidian vault
 
