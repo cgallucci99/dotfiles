@@ -50,7 +50,7 @@ Each machine clones one vault over SSH, once. After that, the Obsidian Git plugi
 | Mode | Repo | Folder |
 | --- | --- | --- |
 | Work | `cgallucci99/work-notes` | `~/Documents/Braven/Work Notes` |
-| Personal | `cgallucci99/personal-notes` | `~/Documents/Personal Notes` |
+| Personal | `cgallucci99/personal-notes` | `~/Documents/personal-notes` |
 
 - Skips if the folder is already a git repo, or has files but no git
 - Re-clones if you delete the folder
