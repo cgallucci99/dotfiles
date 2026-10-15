@@ -27,6 +27,7 @@ Work machines get:
 - Git email `camden.gallucci@bebraven.org` (personal gets `cgallucci99@gmail.com`)
 - Braven aliases and the Heroku git credential helper
 - `astro`, `heroku`, `libpq`, plus `gcloud-cli` and `ngrok` on macOS
+- The work Obsidian vault instead of the personal one
 
 To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `chezmoi apply`.
 
@@ -41,6 +42,19 @@ To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `che
 | macOS defaults | Yes | No |
 
 Both get Oh My Zsh, zsh-autosuggestions, mise (Node and Ruby), uv/pipx tools, VS Code extensions, Claude config, `~/.ssh/config`, and SSH setup.
+
+## Obsidian vault
+
+Each machine clones one vault over SSH, once. After that, the Obsidian Git plugin keeps it synced.
+
+| Mode | Repo | Folder |
+| --- | --- | --- |
+| Work | `cgallucci99/work-notes` | `~/Documents/Braven/Work Notes` |
+| Personal | `cgallucci99/personal-notes` | `~/Documents/Personal Notes` |
+
+- Skips if the folder is already a git repo, or has files but no git
+- Re-clones if you delete the folder
+- Open it once in Obsidian with "Open folder as vault"
 
 ## SSH key
 

@@ -1,0 +1,22 @@
+#!/bin/bash
+# Clones this machine's Obsidian vault once. After that, the Obsidian Git plugin syncs it.
+set -e
+
+{{ if .work -}}
+vault_url="git@github.com:cgallucci99/work-notes.git"
+vault_dir="$HOME/Documents/Braven/Work Notes"
+{{- else -}}
+vault_url="git@github.com:cgallucci99/personal-notes.git"
+vault_dir="$HOME/Documents/Personal Notes"
+{{- end }}
+
+[ -d "$vault_dir/.git" ] && exit 0
+
+if [ -n "$(ls -A "$vault_dir" 2> /dev/null)" ]; then
+  echo "$vault_dir exists but isn't a git repo, skipping the vault clone"
+  exit 0
+fi
+
+mkdir -p "$(dirname "$vault_dir")"
+GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new" git clone "$vault_url" "$vault_dir"
+echo "Cloned your vault. In Obsidian, choose \"Open folder as vault\" and pick $vault_dir"
