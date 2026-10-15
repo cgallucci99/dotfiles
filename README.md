@@ -53,7 +53,6 @@ Each machine clones one vault over SSH, once. After that, the Obsidian Git plugi
 | Personal | `cgallucci99/personal-notes` | `~/Documents/personal-notes` |
 
 - Skips if the folder is already a git repo, or has files but no git
-- Re-clones if you delete the folder
 - Open it once in Obsidian with "Open folder as vault"
 
 ## SSH key
