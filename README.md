@@ -10,6 +10,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cgallucci99/dotfiles/main/
 
 This installs Xcode CLI tools on macOS, then runs `chezmoi init --apply cgallucci99`.
 
+### On a machine that already has dotfiles
+
+```sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/cgallucci99/dotfiles/main/.setup/existing.sh)"
+```
+
+This backs up every file chezmoi will manage to `~/dotfiles-backup-<date>.tgz`, shows the diff, and asks before applying files and again before running setup scripts. Undo file changes with `tar xzf ~/dotfiles-backup-<date>.tgz -C ~`.
+
 On first run, chezmoi asks **"Is this a work machine"** (default: yes on macOS, no on Linux).
 
 ## Work mode
