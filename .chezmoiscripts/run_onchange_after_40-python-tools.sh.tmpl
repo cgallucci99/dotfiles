@@ -1,16 +1,15 @@
 #!/bin/bash
 # --managed-python uses uv's own Python, so removing a Homebrew Python can't break these tools.
 # --force replaces broken installs and links left behind by an old pipx install.
-# rivalcfg needs hidapi, which has no prebuilt build for Python 3.15 yet. Building it on
-# Linux needs libusb headers that Bazzite doesn't ship, so pin it to 3.14.
+# Tool list and Python pins live in .chezmoidata/packages.yaml
 install() {
   {{ .brewPrefix }}/bin/uv tool install --force --managed-python "$@"
 }
 
 failed=()
-install ipython || failed+=(ipython)
-install --python 3.14 rivalcfg || failed+=(rivalcfg)
-install wakepy || failed+=(wakepy)
+{{- range $tool, $python := .packages.all.uvTools }}
+install {{ if $python }}--python {{ $python }} {{ end }}{{ $tool }} || failed+=({{ $tool }})
+{{- end }}
 
 if [ ${#failed[@]} -gt 0 ]; then
   # Exiting non-zero makes chezmoi retry this script on the next apply

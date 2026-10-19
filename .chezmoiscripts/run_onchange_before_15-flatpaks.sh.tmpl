@@ -2,13 +2,16 @@
 #!/bin/bash
 set -e
 
-flatpak install -y --noninteractive flathub \
-  com.google.Chrome \
-  com.usebruno.Bruno \
-  md.obsidian.Obsidian
-{{- if not (lookPath "code") }}
-
-# bazzite-dx ships VS Code natively; otherwise use the Flatpak
-flatpak install -y --noninteractive flathub com.visualstudio.code
+# Package lists live in .chezmoidata/packages.yaml
+flatpaks=(
+{{- range .packages.linux.flatpaks }}
+  {{ . }}
 {{- end }}
+)
+{{- if not (lookPath "code") }}
+# bazzite-dx ships VS Code natively; otherwise use the Flatpak
+flatpaks+=(com.visualstudio.code)
+{{- end }}
+
+flatpak install -y --noninteractive flathub "${flatpaks[@]}"
 {{ end -}}

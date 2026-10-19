@@ -1,41 +1,37 @@
+{{- $os := get .packages .chezmoi.os -}}
 #!/bin/bash
 set -e
 
 eval "$({{ .brewPrefix }}/bin/brew shellenv bash)"
 
+# Package lists live in .chezmoidata/packages.yaml
 brew bundle --file=/dev/stdin <<BREWFILE
-brew "gh"
-brew "mise"
-brew "openssl@3"
-brew "python@3.15"
-brew "tfenv"
-brew "uv"
-{{- if eq .chezmoi.os "linux" }}
-brew "zsh"
+{{- if eq .chezmoi.os "darwin" }}
+{{-   range .packages.darwin.taps }}
+tap {{ . | quote }}
+{{-   end }}
 {{- end }}
 {{- if .work }}
-
-tap "heroku/brew"
-brew "astro"
-brew "heroku/brew/heroku"
-brew "libpq"
+{{-   range .packages.work.taps }}
+tap {{ . | quote }}
+{{-   end }}
+{{- end }}
+{{- range concat .packages.all.brews $os.brews }}
+brew {{ . | quote }}
+{{- end }}
+{{- if .work }}
+{{-   range .packages.work.brews }}
+brew {{ . | quote }}
+{{-   end }}
 {{- end }}
 {{- if eq .chezmoi.os "darwin" }}
-
-# Chrome, Slack, Zoom, Claude, and DisplayLink are installed by MDM (Iru Self Service)
-tap "anthropics/tap"
-brew "dbus"
-cask "anthropics/tap/ant"
-cask "bruno"
-cask "claude-code"
-cask "docker-desktop"
-cask "ghostty"
-cask "obsidian"
-cask "scroll-reverser"
-cask "visual-studio-code"
-{{- if .work }}
-cask "gcloud-cli"
-cask "ngrok"
-{{- end }}
+{{-   range .packages.darwin.casks }}
+cask {{ . | quote }}
+{{-   end }}
+{{-   if .work }}
+{{-     range .packages.work.casks }}
+cask {{ . | quote }}
+{{-     end }}
+{{-   end }}
 {{- end }}
 BREWFILE

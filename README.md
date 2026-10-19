@@ -33,6 +33,8 @@ To change it later, edit `work` in `~/.config/chezmoi/chezmoi.toml` and run `che
 
 ## What it sets up
 
+All package lists (Homebrew, casks, Flatpaks, uv tools, VS Code extensions) live in [`.chezmoidata/packages.yaml`](.chezmoidata/packages.yaml). Edit that file to add or remove a package.
+
 | | macOS | Linux |
 | --- | --- | --- |
 | CLI tools | Homebrew | Homebrew (preinstalled on Bazzite) |
