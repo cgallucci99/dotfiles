@@ -9,3 +9,10 @@
 	autoSetupRemote = true
 [core]
 	editor = code --wait
+# Written by `gh auth login`; kept here so chezmoi and gh agree
+[credential "https://github.com"]
+	helper = 
+	helper = !{{ .brewPrefix }}/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !{{ .brewPrefix }}/bin/gh auth git-credential
