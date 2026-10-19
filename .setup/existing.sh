@@ -61,7 +61,7 @@ fi
 log "Setup scripts that would run (installs, macOS settings, SSH)"
 chezmoi status --include=scripts
 if confirm "Run these scripts now?"; then
-  chezmoi apply
+  chezmoi apply --keep-going
 else
   echo "Skipped. Run \`chezmoi apply\` when you're ready."
 fi

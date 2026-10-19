@@ -89,4 +89,5 @@ Run it locally before pushing (never touches `~`):
 
 - `chezmoi add ~/.somefile` to track a new file
 - `chezmoi diff` to preview changes
-- `chezmoi apply` to apply them
+- `chezmoi apply -k` to apply them
+  - `-k` (`--keep-going`) keeps running the other scripts when one fails. The failed one retries on the next apply.
