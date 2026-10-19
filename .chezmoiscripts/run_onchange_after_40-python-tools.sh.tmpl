@@ -4,5 +4,6 @@ set -e
 # --managed-python uses uv's own Python, so removing a Homebrew Python can't break these tools.
 # --force replaces broken installs and links left behind by an old pipx install.
 for tool in ipython rivalcfg wakepy; do
-  {{ .brewPrefix }}/bin/uv tool install --force --managed-python "$tool"
+  # {{ .brewPrefix }}/bin/uv tool install --force --managed-python "$tool"
+  echo "temporarily disabled" 
 done
