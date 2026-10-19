@@ -3,6 +3,7 @@ README.md
 Library
 {{ end }}
 {{ if ne .chezmoi.os "linux" }}
+.bashrc.d
 .config/Code
 .var
 {{ end }}

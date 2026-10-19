@@ -1,0 +1,6 @@
+# Hands interactive terminals over to Homebrew's zsh. Used instead of chsh because
+# Bazzite advises against a login shell that lives in Homebrew: if zsh breaks, bash still works.
+# SHLVL=1 means a fresh terminal, so running `bash` from zsh still gives you bash.
+if [[ $- == *i* ]] && [ "${SHLVL:-1}" -le 1 ] && [ -x "{{ .brewPrefix }}/bin/zsh" ]; then
+  exec "{{ .brewPrefix }}/bin/zsh" -l
+fi

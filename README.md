@@ -63,9 +63,10 @@ Each machine clones one vault over SSH, once. After that, the Obsidian Git plugi
 
 ## Bazzite notes
 
-- zsh comes from Homebrew. Bazzite recommends setting it in the terminal profile instead of `chsh`:
-  - Terminal settings > profile > "Use Custom Command" > `/home/linuxbrew/.linuxbrew/bin/zsh -l`
-- `-l` matters: `~/.zprofile` puts Homebrew on the PATH.
+- zsh comes from Homebrew. `~/.bashrc.d/zsh` switches every new terminal from bash to zsh.
+  - Used instead of `chsh`, which Bazzite advises against for a Homebrew shell
+  - If zsh is missing, terminals stay in bash
+  - Running `bash` from zsh still gives you bash
 - `mousesetup` needs udev rules first: `sudo rivalcfg --update-udev`
 - Not installed on Linux: Ghostty (no Flatpak), Docker Desktop (Bazzite ships Podman), Scroll Reverser
 
