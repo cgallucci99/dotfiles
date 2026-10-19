@@ -6,7 +6,6 @@ packages:
       - mise
       - openssl@3
       - python@3.15
-      - tfenv
       - uv
     # Tool name: Python version ("" = newest uv-managed Python)
     uvTools:
@@ -71,6 +70,7 @@ packages:
       - heroku/brew
     brews:
       - astro
+      - tfenv
       - heroku/brew/heroku
       - libpq
     # Casks only exist on macOS
