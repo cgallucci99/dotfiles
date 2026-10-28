@@ -21,6 +21,7 @@
 - Prefer short chunks and lists
 - Avoid lengthy descriptions as list items
 - Prefer simple sentences over complex ones
+- use /adhd-friendly-docs
 
 ## Plans
 
