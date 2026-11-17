@@ -8,5 +8,14 @@ Library
 .var
 {{ end }}
 
+{{ if not .work }}
+.config/fish/functions/astronomer.fish
+.config/fish/functions/odyssey.fish
+.config/fish/functions/platform.fish
+.config/fish/functions/prod_console.fish
+.config/fish/functions/staging_console.fish
+.config/fish/functions/worknotes.fish
+{{ end }}
+
 # Oh My Zsh writes these at runtime; without this, every apply deletes them
 .oh-my-zsh/cache/**

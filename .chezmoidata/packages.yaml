@@ -2,6 +2,7 @@
 packages:
   all:
     brews:
+      - fish
       - gh
       - mise
       - openssl@3
