@@ -91,6 +91,3 @@ Apply the rules above strictly to prompts, CLAUDE.md files, skills, agent instru
 - After I fill in answers, review them and ask follow-up questions in the plan. Record each resolution under its decision.
 - Once a resolution is made, remove the reviewer answer section and keep the resolution
 
-## Git conventions
-
-- Do not commit any tasks/plan.md or tasks/todo.md or SPEC.md files

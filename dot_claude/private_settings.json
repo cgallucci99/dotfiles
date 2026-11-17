@@ -1,9 +1,13 @@
 {
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
   "enabledPlugins": {
     "ruby-lsp@claude-plugins-official": true,
     "agent-skills@addy-agent-skills": true,
     "code-simplifier@claude-plugins-official": true,
-    "mattpocock-skills@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": false,
     "i-have-adhd@i-have-adhd": true,
     "humanizer@humanizer": true
   },
