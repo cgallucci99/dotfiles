@@ -21,3 +21,6 @@ eval "$(mise activate zsh)"
 
 export PATH="{{ .brewPrefix }}/opt/libpq/bin:$PATH"
 {{- end }}
+if [[ $(ps -o command= -p "$PPID" | awk '{print $1}') != 'fish' ]]; then
+  exec fish -l
+fi
